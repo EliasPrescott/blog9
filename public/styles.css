@@ -54,7 +54,6 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 4px dashed oklch(var(--primary-color));
 }
 
 main {
@@ -139,7 +138,7 @@ hr {
   flex-wrap: wrap;
 
   & > * {
-    border-right: 1px dashed oklch(var(--txt-color));
+    border-right: 2px dashed oklch(var(--txt-color) / 25%);
     &:last-child {
       border-right: none;
     }
