@@ -12,7 +12,7 @@ Any visual elements that do not tangibly benefit the reader are wasted space at 
 ### Writings
 
 - [Every Layout - Heydon Pickering & Andy Bell](https://every-layout.dev/)
-  - I have not read, but I have heard good things and I am considering purchasing it.
+  - I have not read this, but I have heard good things and I am considering purchasing it.
 - [Modern CSS patterns in Campfire - Jason Zimdars](https://dev.37signals.com/modern-css-patterns-and-techniques-in-campfire/)
   - I use multiple techniques from this article here on australorp.dev:
     - [oklch](https://developer.mozilla.org/en-US/docs/Web/CSS/color%5Fvalue/oklch) colors with liberal use of CSS variables for easy tweaking and context-dependent theming.
