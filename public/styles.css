@@ -132,24 +132,6 @@ hr {
   }
 }
 
-.hero-container {
-  display: flex;
-  flex-wrap: wrap;
-
-  & > * {
-    border-right: 2px dashed oklch(var(--txt-color) / 25%);
-    &:last-child {
-      border-right: none;
-    }
-    min-width: min(90vw, 400px);
-    flex: 1;
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-}
-
 figure {
   --figure-color: var(--txt-color);
   background-color: oklch(var(--figure-color) / 10%);
@@ -215,13 +197,5 @@ table {
   }
   ul {
     padding-inline-start: 16px;
-  }
-  .hero-container {
-    & > * {
-      border-right: none;
-      &:not(:last-child) {
-        padding-bottom: none;
-      }
-    }
   }
 }
