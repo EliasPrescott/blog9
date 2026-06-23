@@ -219,6 +219,9 @@ table {
   .hero-container {
     & > * {
       border-right: none;
+      &:not(:last-child) {
+        padding-bottom: none;
+      }
     }
   }
 }
