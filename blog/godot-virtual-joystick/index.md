@@ -3,6 +3,8 @@ title: "Godot Virtual Joystick"
 date: "2026-04-22"
 tags:
 - godot
+- gamedev
+- programming
 ---
 
 Godot version 4.7 dev 1 introduced a new UI node: the [Virtual Joystick](https://godotengine.org/article/dev-snapshot-godot-4-7-dev-1/#input-virtualjoystick).
