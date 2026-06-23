@@ -34,27 +34,6 @@ a {
   }
 }
 
-button {
-  cursor: pointer;
-  font-size: inherit;
-  --btn-color: var(--bg-color);
-  --btn-bg-color: var(--txt-color);
-  color: oklch(var(--btn-bg-color));
-  background-color: oklch(var(--btn-color));
-  border: 2px solid oklch(var(--btn-bg-color));
-  border-radius: 4px;
-
-  &:hover, &:focus-visible {
-    color: oklch(var(--btn-color));
-    background-color: oklch(var(--btn-bg-color));
-  }
-
-  &.primary {
-    --btn-color: var(--bg-color);
-    --btn-bg-color: var(--primary-color);
-  }
-}
-
 code {
   font-size: 1.2rem;
 }
