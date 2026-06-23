@@ -205,13 +205,13 @@ table {
     font-size: 1.3rem;
   }
   body,a,code {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
   }
   header h1 a {
     font-size: 1.6rem;
   }
   .chip {
-    font-size: 0.8rem;
+    font-size: 1.0rem;
   }
   ul {
     padding-inline-start: 16px;
