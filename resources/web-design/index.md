@@ -1,6 +1,6 @@
 ---
 title: "Web Design"
-updated: "2026-06-22"
+updated: "2026-06-23"
 ---
 
 Take most recommendations on this page with a grain of salt.
@@ -22,4 +22,6 @@ Any visual elements that do not tangibly benefit the reader are wasted space at 
   - I have not taken any of the courses offered on this site, but I enjoy the site's design and the free content enough to list it here.
 - [Practical Typography - Matthew Butterick](https://practicaltypography.com/)
   - Tons of great advice. Even taking just a few suggestions from this book will improve your designs significantly.
+  - Also has good advice on typography and general styling for more formal documents (e.g. business cards, papers, and résumés).
 - [Visual design rules you can safely follow every time - Anthony Hobday](https://anthonyhobday.com/sideprojects/saferules/)
+  - Very solid advice. I have internalized most of it by now, but I occasionally come back to re-establish my core principles.

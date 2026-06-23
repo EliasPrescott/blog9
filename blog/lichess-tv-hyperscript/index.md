@@ -4,6 +4,7 @@ date: "2026-04-16"
 tags:
 - chess
 - hyperscript
+- programming
 ---
 
 [Hyperscript](https://hyperscript.org/) is an alternative scripting language for the web that optimizes for clean syntax and elegant interactions with the browser DOM APIs. It is very pleasant to work in. I had to bounce back and force between my editor and the language documentation, but I got the hang of it pretty quickly.

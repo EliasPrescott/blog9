@@ -1,6 +1,6 @@
 ---
 title: "Programming"
-updated: "2026-04-27"
+updated: "2026-06-23"
 ---
 
 This is a collection of resources on the topic of programming.
@@ -27,8 +27,6 @@ I will continually update this page as I find more resources that I like.
     - A few psql tricks (`\i` to run SQL from a local file, `\o` to route output to a local file, `\copy` for... copying) can go a long way.
     - If you use [vim-dadbod](https://github.com/tpope/vim-dadbod) to connect to Postgres from Vim/NeoVim, all the features in psql are suddenly available directly in your editor.
 
----
-
 ### Software Design
 
 #### Videos
@@ -47,8 +45,6 @@ I will continually update this page as I find more resources that I like.
 - A Philosophy of Software Design - John Ousterhout (2018)
 - The Mythical Man Month - Fred Brooks (1975)
 - [The Architecture of Open Source Applications - Edited by Amy Brown & Greg Wilson](https://aosabook.org/en/)
-
----
 
 ### Quotes
 
@@ -73,4 +69,13 @@ I will continually update this page as I find more resources that I like.
     <figcaption>
         <cite><a href="https://en.wikiquote.org/wiki/C._A._R._Hoare">Tony Hoare</a></cite>
     </figcaption>
+</figure>
+
+<figure>
+  <blockquote>
+    say again and say often: complexity <i>very, very</i> bad
+  </blockquote>
+  <figcaption>
+    <cite><a href="https://grugbrain.dev/">Grug</a></cite>
+  </figcaption>
 </figure>

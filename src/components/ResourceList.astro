@@ -12,7 +12,7 @@ resources = resources.toSorted((a, b) => b.data.title >= a.data.title)
   {resources.map(x => <li>
     <div class="post-link-holder">
       <a href={`/resources/${x.id}`} class="post-link">
-        {x.data.title}
+        {x.data.title} (updated {x.data.updated})
       </a>
     </div>
   </li>)}

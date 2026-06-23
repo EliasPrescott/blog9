@@ -2,35 +2,62 @@
 import MainLayout from '../layouts/MainLayout.astro'
 import PostList from '../components/PostList.astro'
 import ResourceList from '../components/ResourceList.astro'
+import TagList from '../components/TagList.astro'
+import { getCollection } from 'astro:content'
+
+const posts = await getCollection('blog')
+const allTags = [...new Set(posts.flatMap(x => x.data.tags))]
 ---
 
 <MainLayout title='Home'>
-  <article>
-    <h2>Resources</h2>
-    <ResourceList />
-    <h2>Posts</h2>
-    <PostList />
-    <h2>Social Presences</h2>
-    <ul>
-      <li><a href="https://github.com/EliasPrescott">GitHub</a></li>
-      <li><a href="https://www.linkedin.com/in/elias-prescott">LinkedIn</a></li>
-    </ul>
+  <div class="hero-container">
+    <div>
+      <p>
+        My place for writing about faith, technology, and visual design.
+        There are many other places like it, but this one is mine.
+        All opinions are my own, and certainly correct!
+      </p>
+      <p>
+        Posts are one-time bursts of writing concentrated on a concise idea or project.
+        Resource pages are ever-changing collections relating to a broader topic.
+      </p>
+      <h2>Posts</h2>
+      <PostList />
+    </div>
+    <div class="hero-right-bar">
+      <h2>Resources</h2>
+      <ResourceList />
+      <h2>Post Tags</h2>
+      <TagList tags={allTags} />
+      <h2>Social Presences</h2>
+      <ul>
+        <li><a href="https://github.com/EliasPrescott">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/elias-prescott">LinkedIn</a></li>
+      </ul>
+    </div>
+  </div>
 
-    <hr />
+  <hr />
 
-    <figure>
-      <blockquote>
-        The free man is not he who thinks all opinions equally true or false; that is not freedom but feeble-mindedness. The free man is he who sees the errors as clearly as he sees the truth.
-      </blockquote>
-      <blockquote>
-        People forget how to be grateful unless they learn how to be humble.
-      </blockquote>
-      <blockquote>
-        There is no such thing on earth as an uninteresting subject; the only thing that can exist is an uninterested person.
-      </blockquote>
-      <figcaption>
-        <cite><a href="https://www.chesterton.org/quotations/essential-chesterton/">G.K. Chesterton</a></cite>
-      </figcaption>
-    </figure>
-  </article>
+  <figure>
+    <blockquote>
+      Where we find a difficulty we may always expect that a discovery awaits us.
+    </blockquote>
+    <figcaption>
+      <cite><a href="https://en.wikiquote.org/wiki/C._S._Lewis">C.S. Lewis</a></cite>
+    </figcaption>
+  </figure>
+
+  <figure>
+    <blockquote>
+               The free man is not he who thinks all opinions equally true or false; that is not freedom but feeble-mindedness. The free man is he who sees the errors as clearly as he sees the truth.
+    </blockquote>
+    <blockquote>
+      There is no such thing on earth as an uninteresting subject; the only thing that can exist is an uninterested person.
+    </blockquote>
+    <figcaption>
+      <cite><a href="https://www.chesterton.org/quotations/essential-chesterton/">G.K. Chesterton</a></cite>
+    </figcaption>
+  </figure>
+
 </MainLayout>

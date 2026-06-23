@@ -15,6 +15,6 @@ const { tag } = Astro.params
 ---
 
 <MainLayout title={`Posts tagged ${tag}`}>
-  <h2>Posts tagged {tag}</h2>
+  <h2>Posts tagged <span class="smallcaps">{tag}</span></h2>
   <PostList tag={tag} />
 </MainLayout>

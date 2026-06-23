@@ -1,7 +1,18 @@
 ---
+import { getCollection } from 'astro:content'
+
 const { tags } = Astro.props
+const posts = await getCollection('blog')
+
+function tagPostCount(tag) {
+  return posts.filter(x => x.data.tags.includes(tag)).length
+}
+
+const enhancedTags = tags
+  .map(x => ({ tag: x, count: tagPostCount(x) }))
+  .toSorted((a, b) => b.count - a.count || a.tag.localeCompare(b.tag))
 ---
 
 <div class="tag-list">
-  {tags.map(t => <a href={`/tags/${t}`} class="chip primary">{t}</a>)}
+  {enhancedTags.map(t => <a href={`/tags/${t.tag}`} class="chip primary">{t.tag}&nbsp;({t.count})</a>)}
 </div>
