@@ -10,32 +10,26 @@ const allTags = [...new Set(posts.flatMap(x => x.data.tags))]
 ---
 
 <MainLayout title='Home'>
-  <div class="hero-container">
-    <div>
-      <p>
-        My place for writing about faith, technology, and visual design.
-        There are many other places like it, but this one is mine.
-        All opinions are my own, and certainly correct!
-      </p>
-      <p>
-        Posts are one-time bursts of writing concentrated on a concise idea or project.
-        Resource pages are ever-changing collections relating to a broader topic.
-      </p>
-      <h2>Posts</h2>
-      <PostList />
-    </div>
-    <div class="hero-right-bar">
-      <h2>Resources</h2>
-      <ResourceList />
-      <h2>Post Tags</h2>
-      <TagList tags={allTags} />
-      <h2>Social Presences</h2>
-      <ul>
-        <li><a href="https://github.com/EliasPrescott">GitHub</a></li>
-        <li><a href="https://www.linkedin.com/in/elias-prescott">LinkedIn</a></li>
-      </ul>
-    </div>
-  </div>
+  <p>
+    My place for writing about faith, technology, and visual design.
+    There are many other places like it, but this one is mine.
+    All opinions are my own, and certainly correct!
+  </p>
+  <p>
+    Posts are one-time bursts of writing concentrated on a concise idea or project.
+    Resource pages are ever-changing collections relating to a broader topic.
+  </p>
+  <h2>Posts</h2>
+  <PostList />
+  <h2>Resources</h2>
+  <ResourceList />
+  <h2>Post Tags</h2>
+  <TagList tags={allTags} />
+  <h2>Social Presences</h2>
+  <ul>
+    <li><a href="https://github.com/EliasPrescott">GitHub</a></li>
+    <li><a href="https://www.linkedin.com/in/elias-prescott">LinkedIn</a></li>
+  </ul>
 
   <hr />
 
