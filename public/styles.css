@@ -27,12 +27,10 @@ a {
   color: oklch(var(--primary-color));
   text-decoration: none;
   font-style: italic;
-  background-color: transparent;
   border-radius: 4px;
-  transition: background-color 0.25s;
 
   &:hover, &:focus-visible {
-    background-color: oklch(var(--txt-color) / 10%);
+    text-decoration: 2px solid underline oklch(var(--primary-color));
   }
 }
 
