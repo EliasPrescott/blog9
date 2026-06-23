@@ -61,7 +61,7 @@ article {
 }
 
 pre {
-  width: fit-content;
+  max-width: fit-content;
   padding: 16px;
   border-radius: 4px;
 }
