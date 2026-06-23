@@ -1,7 +1,6 @@
 ---
 title: "Making a Lichess TV Viewer with Hyperscript"
 date: "2026-04-16"
-icon: "chess-knight"
 tags:
 - chess
 - hyperscript

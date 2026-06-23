@@ -1,7 +1,6 @@
 ---
 title: "Romans"
 updated: "2026-06-22"
-icon: "scroll-text"
 ---
 
 ### Commentaries

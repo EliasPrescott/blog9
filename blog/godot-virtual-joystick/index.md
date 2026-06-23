@@ -1,7 +1,6 @@
 ---
 title: "Godot Virtual Joystick"
 date: "2026-04-22"
-icon: "joystick"
 tags:
 - godot
 ---

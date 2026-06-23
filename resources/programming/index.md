@@ -1,7 +1,6 @@
 ---
 title: "Programming"
 updated: "2026-04-27"
-icon: "binary"
 ---
 
 This is a collection of resources on the topic of programming.
