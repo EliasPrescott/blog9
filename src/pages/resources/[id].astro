@@ -1,0 +1,31 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro'
+import { Image } from 'astro:assets'
+import { getCollection, getEntry, render } from 'astro:content'
+
+export async function getStaticPaths() {
+  const resources = await getCollection('resources')
+  return resources.map(p => ({
+    params: { id: p.id },
+  }))
+}
+
+const { id } = Astro.params
+
+const resource = await getEntry('resources', id)
+
+if (!resource) {
+  throw new Error(`Resource ${resource} not found`)
+}
+
+const { Content } = await render(resource)
+const title = `Resources on ${resource.data.title}`
+---
+
+<MainLayout title={title}>
+  <article>
+    <h1>{title}</h1>
+    <p>Last updated {resource.data.updated}</p>
+    <Content />
+  </article>
+</MainLayout>

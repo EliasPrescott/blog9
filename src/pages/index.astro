@@ -1,0 +1,36 @@
+---
+import MainLayout from '../layouts/MainLayout.astro'
+import PostList from '../components/PostList.astro'
+import ResourceList from '../components/ResourceList.astro'
+---
+
+<MainLayout title='Home'>
+  <article>
+    <h2>Resources</h2>
+    <ResourceList />
+    <h2>Posts</h2>
+    <PostList />
+    <h2>Social Presences</h2>
+    <ul>
+      <li><a href="https://github.com/EliasPrescott">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/elias-prescott">LinkedIn</a></li>
+    </ul>
+
+    <hr />
+
+    <figure>
+      <blockquote>
+        The free man is not he who thinks all opinions equally true or false; that is not freedom but feeble-mindedness. The free man is he who sees the errors as clearly as he sees the truth.
+      </blockquote>
+      <blockquote>
+        People forget how to be grateful unless they learn how to be humble.
+      </blockquote>
+      <blockquote>
+        There is no such thing on earth as an uninteresting subject; the only thing that can exist is an uninterested person.
+      </blockquote>
+      <figcaption>
+        <cite><a href="https://www.chesterton.org/quotations/essential-chesterton/">G.K. Chesterton</a></cite>
+      </figcaption>
+    </figure>
+  </article>
+</MainLayout>

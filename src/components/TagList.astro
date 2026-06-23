@@ -1,0 +1,7 @@
+---
+const { tags } = Astro.props
+---
+
+<div class="tag-list">
+  {tags.map(t => <a href={`/tags/${t}`} class="chip primary">{t}</a>)}
+</div>

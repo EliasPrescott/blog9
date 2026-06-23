@@ -1,0 +1,19 @@
+---
+import TagList from './TagList.astro'
+import { getCollection } from 'astro:content'
+
+const { tag } = Astro.props
+
+let resources = await getCollection('resources')
+resources = resources.toSorted((a, b) => b.data.title >= a.data.title)
+---
+
+<ul>
+  {resources.map(x => <li>
+    <div class="post-link-holder">
+      <a href={`/resources/${x.id}`} class="post-link">
+        {x.data.title}
+      </a>
+    </div>
+  </li>)}
+</ul>
