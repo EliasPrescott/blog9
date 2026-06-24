@@ -2,21 +2,31 @@
 import TagList from './TagList.astro'
 import { getCollection } from 'astro:content'
 
-const { tag } = Astro.props
+const { tag, max } = Astro.props
 
 let posts = await getCollection('blog')
 if (tag) {
   posts = posts.filter(p => p.data.tags.includes(tag))
+  if (max) {
+    throw new Error('cannot set max on a PostList with a tag filter')
+  }
 }
 posts = posts.toSorted((a, b) => new Date(b.data.date) - new Date(a.data.date))
+const totalPostCount = posts.length
+const morePosts = max && max < totalPostCount
+
+if (max) {
+  posts = posts.slice(0, max)
+}
 ---
 
 <ul>
   {posts.map(p => <li>
     <div class="post-link-holder">
-      <a href={`/blog/${p.id}`} class="post-link">
-        {p.data.title} ({p.data.date})
-      </a>
+      {p.data.featured && <span title="featured post">★</span>}
+      <a href={`/blog/${p.id}`} class="post-link">{p.data.title} ({p.data.date})</a>
     </div>
   </li>)}
 </ul>
+{morePosts && <a href="/blog">☞ View all posts ({totalPostCount-max} more)</a>}
+{posts.length === 0 && <div>No posts to be found.</div>}

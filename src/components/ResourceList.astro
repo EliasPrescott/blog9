@@ -6,6 +6,10 @@ const { tag } = Astro.props
 
 let resources = await getCollection('resources')
 resources = resources.toSorted((a, b) => b.data.title >= a.data.title)
+
+if (tag) {
+  resources = resources.filter(x => x.data.tags?.includes(tag))
+}
 ---
 
 <ul>
@@ -17,3 +21,4 @@ resources = resources.toSorted((a, b) => b.data.title >= a.data.title)
     </div>
   </li>)}
 </ul>
+{resources.length === 0 && <p>No resources pages found.</p>}
