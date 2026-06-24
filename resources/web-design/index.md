@@ -1,6 +1,8 @@
 ---
 title: "Web Design"
 updated: "2026-06-23"
+tags:
+- web-design
 ---
 
 Take most recommendations on this page with a grain of salt.

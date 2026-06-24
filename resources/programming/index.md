@@ -1,6 +1,8 @@
 ---
 title: "Programming"
 updated: "2026-06-23"
+tags:
+- programming
 ---
 
 This is a collection of resources on the topic of programming.
@@ -27,28 +29,24 @@ I will continually update this page as I find more resources that I like.
     - A few psql tricks (`\i` to run SQL from a local file, `\o` to route output to a local file, `\copy` for... copying) can go a long way.
     - If you use [vim-dadbod](https://github.com/tpope/vim-dadbod) to connect to Postgres from Vim/NeoVim, all the features in psql are suddenly available directly in your editor.
 
-### Software Design
-
-#### Videos
+### Videos
 
 - [Simple Made Easy - Rich Hickey (2011)](https://youtu.be/SxdOUGdseq4)
 
-#### Essays
+### Essays
 
 - [Codin' Dirty - Carson Gross (2024)](https://htmx.org/essays/codin-dirty)
 - [Grug Brain Developer - Carson Gross (2022)](https://grugbrain.dev/)
 - [Pragmatism in Programming Proverbs - Ginger Bill (2020)](https://www.gingerbill.org/article/2020/05/31/programming-pragmatist-proverbs/)
 - [Semantic Compression - Casey Muratori (2014)](https://caseymuratori.com/blog_0015)
 
-#### Books
+### Books
 
 - A Philosophy of Software Design - John Ousterhout (2018)
 - The Mythical Man Month - Fred Brooks (1975)
 - [The Architecture of Open Source Applications - Edited by Amy Brown & Greg Wilson](https://aosabook.org/en/)
 
 ### Quotes
-
-#### On Complexity
 
 <figure>
     <blockquote>
