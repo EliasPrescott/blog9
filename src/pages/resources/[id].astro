@@ -1,6 +1,8 @@
 ---
 import MainLayout from '../../layouts/MainLayout.astro'
+import TagList from '../../components/TagList.astro'
 import PostList from '../../components/PostList.astro'
+import ResourceList from '../../components/ResourceList.astro'
 import { Image } from 'astro:assets'
 import { getCollection, getEntry, render } from 'astro:content'
 
@@ -26,10 +28,15 @@ const title = `Resources on ${resource.data.title}`
 <MainLayout title={title}>
   <article>
     <h1>{title}</h1>
-    <p>Last updated {resource.data.updated}</p>
+    <p>Last updated <time datetime={resource.data.updated}>{resource.data.updated}</time></p>
+    <TagList tags={resource.data.tags} />
     <Content />
+    <hr />
     {resource.data.tags.map(tag => <>
-      <hr />
+      <h3>Resources tagged <span class="smallcaps">{tag}</span></h3>
+      <ResourceList tag={tag} />
+    </>)}
+    {resource.data.tags.map(tag => <>
       <h3>Posts tagged <span class="smallcaps">{tag}</span></h3>
       <PostList tag={tag} />
     </>)}

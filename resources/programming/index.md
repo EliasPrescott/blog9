@@ -1,6 +1,6 @@
 ---
 title: "Programming"
-updated: "2026-06-23"
+updated: "2026-06-25"
 tags:
 - programming
 ---
@@ -17,17 +17,6 @@ I will continually update this page as I find more resources that I like.
   - [Flake Schema](https://nixos.wiki/wiki/Flakes#Flake_schema)
 - [Odin](https://odin-lang.org/docs/overview/)
   - [string type conversions](https://odin-lang.org/docs/overview/#string-type-conversions)
-- [Postgres](https://www.postgresql.org/docs/)
-  - [JSON Functions and Operators](https://www.postgresql.org/docs/current/functions-json.html)
-  - [PL/pgSQL - SQL Procedural Language](https://www.postgresql.org/docs/current/plpgsql.html)
-    - PL/pgSQL is very useful for writing complex migrations or pushing business logic into your database.
-  - [Postgres Wiki](https://wiki.postgresql.org/wiki/Main_Page)
-    - [Don't Do This (Common Postgres Mistakes)](https://wiki.postgresql.org/wiki/Don%27t_Do_This)
-  - [Window Function Calls](https://www.postgresql.org/docs/current/sql-expressions.html#SYNTAX-WINDOW-FUNCTIONS)
-    - Windowing in SQL is great for analytical queries and it offers more options for whenever basic `GROUP BY`s and aggregate functions break down.
-  - [psql (PostgreSQL interactive terminal)](https://www.postgresql.org/docs/current/app-psql.html)
-    - A few psql tricks (`\i` to run SQL from a local file, `\o` to route output to a local file, `\copy` for... copying) can go a long way.
-    - If you use [vim-dadbod](https://github.com/tpope/vim-dadbod) to connect to Postgres from Vim/NeoVim, all the features in psql are suddenly available directly in your editor.
 
 ### Videos
 

@@ -16,7 +16,7 @@ if (tag) {
   {resources.map(x => <li>
     <div class="post-link-holder">
       <a href={`/resources/${x.id}`} class="post-link">
-        {x.data.title} (updated {x.data.updated})
+        {x.data.title} (updated <time datetime={x.data.updated}>{x.data.updated}</time>)
       </a>
     </div>
   </li>)}

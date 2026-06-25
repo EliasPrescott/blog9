@@ -25,7 +25,7 @@ const { Content } = await render(post)
 <MainLayout title={post.data.title}>
   <article>
     <h1>{post.data.title}</h1>
-    <p>Written {post.data.date}</p>
+    <p>Written <time datetime={post.data.date}>{post.data.date}</time></p>
     <TagList tags={post.data.tags} />
     <Content />
   </article>

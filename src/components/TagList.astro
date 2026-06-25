@@ -3,9 +3,11 @@ import { getCollection } from 'astro:content'
 
 const { tags } = Astro.props
 const posts = await getCollection('blog')
+const resources = await getCollection('resources')
 
 function tagPostCount(tag) {
   return posts.filter(x => x.data.tags.includes(tag)).length
+    + resources.filter(x => x.data.tags.includes(tag)).length
 }
 
 const enhancedTags = tags

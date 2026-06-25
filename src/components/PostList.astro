@@ -22,10 +22,8 @@ if (max) {
 
 <ul>
   {posts.map(p => <li>
-    <div class="post-link-holder">
-      {p.data.featured && <span title="featured post">★</span>}
-      <a href={`/blog/${p.id}`} class="post-link">{p.data.title} ({p.data.date})</a>
-    </div>
+    {p.data.featured && <span title="featured post">★</span>}
+    <a href={`/blog/${p.id}`} class="post-link">{p.data.title} (<time datetime={p.data.date}>{p.data.date}</time>)</a>
   </li>)}
 </ul>
 {morePosts && <a href="/blog">☞ View all posts ({totalPostCount-max} more)</a>}

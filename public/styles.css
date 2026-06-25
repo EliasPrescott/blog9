@@ -13,7 +13,7 @@ body {
   background-color: oklch(var(--bg-color));
 }
 
-h1,h2,h3,h4,h5,h6,p,ul,blockquote,figure {
+h1,h2,h3,h4,h5,h6,p,ul,blockquote,figure,pre {
   margin: 0;
 }
 
@@ -98,18 +98,6 @@ hr {
   gap: 4px;
 }
 
-.post-link-holder {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-
-  .post-link {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-  }
-}
-
 .tag-list {
   display: flex;
   flex-wrap: wrap;
@@ -173,15 +161,26 @@ table {
   width: fit-content;
 
   tr {
-    border-bottom: 1px dashed oklch(var(--txt-color));
+    border-bottom: 1px solid oklch(var(--txt-color) / 10%);
     &:last-child {
       border-bottom: none;
     }
   }
-  
-  td:not(:last-child) {
-    padding-right: 16px;
+
+  th {
+    padding: 0 16px;
   }
+  th:not(:last-child) {
+    border-right: 1px solid oklch(var(--txt-color) / 10%);
+  }
+  
+  td {
+    padding: 4px 8px;
+  }
+}
+
+time[datetime] {
+  text-wrap: nowrap;
 }
 
 @media (max-width: 100ch) {
