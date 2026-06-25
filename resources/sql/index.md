@@ -13,6 +13,7 @@ tags:
   - [Pivot — Rows to Columns](https://modern-sql.com/use-case/pivot)
   - [Structured Primary Keys](https://modern-sql.com/blog/2026-06/structured-primary-keys)
 - [Postgres Weekly](https://postgresweekly.com/)
+- [Simplify: move code into database functions](https://sive.rs/pg)
 - [Use the Index, Luke! — Markus Winand](https://use-the-index-luke.com/) (also available as [SQL Performance Explained](https://sql-performance-explained.com/))
 - [www.craigkerstiens.com — Craig Kerstiens](https://www.craigkerstiens.com/)
   - [Postgres Dollar Quoting](https://www.craigkerstiens.com/2013/08/02/postgres-dollar-quoting/)
