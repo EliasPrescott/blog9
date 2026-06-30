@@ -48,6 +48,15 @@ a {
 code {
   font-size: 1.2rem;
   font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  background-color: oklch(var(--primary-color) / 10%);
+  padding: 0 4px;
+  border: 1px solid oklch(var(--txt-color));
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  border: none;
 }
 
 header {
