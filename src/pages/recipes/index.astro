@@ -1,0 +1,18 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro'
+import { getCollection } from 'astro:content'
+
+let recipes = await getCollection('recipes')
+recipes = recipes.toSorted((a,b) => b.data.title.localCompare(a.data.title))
+---
+
+<MainLayout title='Recipes'>
+  <article>
+    <h1>Recipes</h1>
+    <ul>
+      {recipes.map(x => <li>
+        <a href={`/recipes/${x.id}`}>{x.data.title}</a>
+      </li>)}
+    </ul>
+  </article>
+</MainLayout>

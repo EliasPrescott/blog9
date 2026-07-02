@@ -9,4 +9,8 @@ const resources = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './resources' })
 })
 
-export const collections = { blog, resources }
+const recipes = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './recipes' })
+})
+
+export const collections = { blog, resources, recipes }

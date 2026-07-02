@@ -1,0 +1,44 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro'
+import { getCollection, getEntry, render } from 'astro:content'
+
+export async function getStaticPaths() {
+  const recipes = await getCollection('recipes')
+  return recipes.map(x => ({
+    params: { id: x.id },
+  }))
+}
+
+const { id } = Astro.params
+
+const recipe = await getEntry('recipes', id)
+
+if (!recipe) {
+  throw new Error(`Recipe ${id} not found`)
+}
+
+const { Content } = await render(recipe)
+---
+
+<MainLayout title={recipe.data.title}>
+  <article>
+    <a href='/recipes'>All recipes</a>
+    <h1>{recipe.data.title}</h1>
+    <p>{recipe.data.source && <a href={recipe.data.source}>Source</a>}</p>
+    <p>Added {recipe.data.date}</p>
+    <hr />
+    {recipe.data.ingredients && <>
+      <h3>Ingredients</h3>
+      <ul>
+        {recipe.data.ingredients.map(x => <li>
+          <label>
+            <input type='checkbox' />
+            {x}
+          </label>
+        </li>)}
+      </ul>
+      <hr />
+    </>}
+    <Content />
+  </article>
+</MainLayout>
