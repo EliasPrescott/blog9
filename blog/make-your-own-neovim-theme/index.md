@@ -13,7 +13,7 @@ So, I decided to make a NeoVim theme based on this website's colors, and it was 
 
 <figure>
 
-To use this, put it in `~/.config/nvim/colors/australorp.lua` and `vim.cmd('colorscheme australorp')` in your `~/.config/nvim/init.lua`.
+To use this, put it in `~/.config/nvim/colors/australorp.lua` and add `vim.cmd('colorscheme australorp')` to your `~/.config/nvim/init.lua`.
 I also had to add `vim.o.background = 'light'`, so try adding that if you have any issues.
 
 ```lua
