@@ -17,7 +17,7 @@ if (!match) {
 }
 const [_,book,chapter,verse,version] = match
 function formatLink(book, chapter, verse, version = 'ESV') {
-  return `https://app.literalword.com/${version}/${bookToInt(book)}/${chapter}${verse ? `/${verse}` : ''}`
+  return `https://app.literalword.com/${bookToInt(book)}/${chapter}${verse ? `/${verse}` : ''}`
 }
 const link = formatLink(book, chapter, verse, version)
 ---
