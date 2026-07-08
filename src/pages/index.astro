@@ -3,6 +3,7 @@ import MainLayout from '../layouts/MainLayout.astro'
 import PostList from '../components/PostList.astro'
 import ResourceList from '../components/ResourceList.astro'
 import TagList from '../components/TagList.astro'
+import BibleLink from '../components/BibleLink.astro'
 import { getCollection } from 'astro:content'
 
 const posts = await getCollection('blog')
@@ -41,7 +42,7 @@ const allTags = [...new Set(posts.flatMap(x => x.data.tags))]
         For I am not ashamed of the gospel, for it is the power of God for salvation to everyone who believes, to the Jew first and also to the Greek.
       </blockquote>
       <figcaption>
-        <cite>Romans 1:16 (ESV)</cite>
+        <cite><BibleLink ref='Romans 1:16 (ESV)' /></cite>
       </figcaption>
     </figure>
 
@@ -51,7 +52,7 @@ const allTags = [...new Set(posts.flatMap(x => x.data.tags))]
         For the foolishness of God is wiser than men, and the weakness of God is stronger than men.
       </blockquote>
       <figcaption>
-        <cite>1 Corinthians 1:22-25 (ESV)</cite>
+        <cite><BibleLink ref='1 Corinthians 1:22-25 (ESV)' /></cite>
       </figcaption>
     </figure>
 
