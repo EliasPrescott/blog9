@@ -4,6 +4,7 @@ date: "2026-06-29"
 tags:
 - sql
 - TIL
+- postgres
 ---
 
 Today I learned about the `SECURITY INVOKER/DEFINER` clause available on Postgres functions definitions ([`CREATE FUNCTION` docs](https://www.postgresql.org/docs/current/sql-createfunction.html)).
