@@ -1,0 +1,245 @@
+---
+title: "Cursed MacOS GUI Programming with Odin"
+date: "2026-07-08"
+tags:
+- programming
+- odin
+---
+import demoVideo from './odin-macos-app-demo.mp4';
+
+Warning:
+I have little experience with Objective-C, Swift, or any of Apple's various SDKs and APIs, so don't take anything you are about to see too seriously...
+
+---
+
+I really enjoy programming with Odin.
+And one neat feature of Odin is that it has some builtin support for integrating with Objective-C APIs.
+Odin has a vendor library with bindings for most of the classes you would need for writing a basic Darwin application, so I figured why not give it a try?
+
+<video controls>
+  <source src={demoVideo} />
+</video>
+
+With only 214 lines of code, I already have the start of a small text editor!
+Obviously there is a reason large frameworks like SwiftUI exist, and I'm not saying this way is better, but it is refreshing to dip down to the lowest level (that I know of, there may be another set of lower-level Darwin graphics APIs below the Objective-C runtime).
+This was also a fun experience for me because I don't have much experience using native platform APIs.
+Most of the time, I am working at a very high-level of abstraction with frameworks or libraries that handle platform details for me.
+
+Anyway, here is all the code for the demo app.
+
+```odin
+package main
+
+import "core:os"
+import "core:fmt"
+import "base:runtime"
+import "base:intrinsics"
+import "core:path/filepath"
+import NS "core:sys/darwin/Foundation"
+
+State :: struct {
+    app: ^NS.Application,
+    window: ^NS.Window,
+    scrollable_text_view: ^ScrollView,
+    text_view: ^TextView,
+}
+
+main :: proc() {
+    s := new(State)
+    s.app = NS.Application_sharedApplication()
+    s.app->setActivationPolicy(.Regular)
+
+    context.user_ptr = rawptr(s)
+
+    app_delegate := NS.application_delegate_register_and_alloc(
+        NS.ApplicationDelegateTemplate{
+            applicationDidFinishLaunching = proc(_: ^NS.Notification) {
+                s := (^State)(context.user_ptr)
+                setup_ui(s)
+            },
+            applicationShouldTerminate = proc(app: ^NS.Application) -> NS.ApplicationTerminateReply {
+                return .TerminateNow
+            },
+        },
+        "DemoApplicationDelegate",
+        context
+    )
+    s.app->setDelegate(app_delegate)
+
+    rect := NS.Rect {
+        x = 0,
+        y = 0,
+        width = 500,
+        height = 500,
+    }
+    s.window = NS.Window_alloc()
+    style := NS.WindowStyleMask{.Titled,.Closable,.Miniaturizable,.Resizable}
+    s.window = s.window->initWithContentRect(rect, style, .Buffered, false)
+    bg_color := NS.Color_colorWithCalibratedRed(251,254,255,255)
+    s.window->setBackgroundColor(bg_color)
+    s.window->center()
+    s.window->makeKeyAndOrderFront(nil)
+
+    win_delegate := NS.window_delegate_register_and_alloc(
+        {
+            windowWillResizeToSize = proc(_: ^NS.Window, size: NS.Size) -> NS.Size {
+                s := cast(^State)context.user_ptr
+                window_resizing(s, size)
+                return size
+            },
+            windowShouldClose = proc(_: ^NS.Window) -> bool {
+                s := cast(^State)context.user_ptr
+                s.app->terminate(nil)
+                return true
+            },
+        },
+        "DemoWindowDelegate",
+        context
+    )
+    s.window->setDelegate(win_delegate)
+
+    s.app->activateIgnoringOtherApps(true)
+    s.app->finishLaunching()
+
+    s.app->run()
+}
+
+msgSend :: intrinsics.objc_send
+
+window_resizing :: proc(s: ^State, size: NS.Size) {
+    content_rect := s.window->contentLayoutRect()
+    if s.scrollable_text_view != nil {
+        rect := NS.Rect {
+            x = 0,
+            y = 0,
+            width = content_rect.width,
+            height = content_rect.height,
+        }
+        msgSend(nil, s.scrollable_text_view, "setFrame:", content_rect)
+    }
+}
+
+load_file :: proc(s: ^State, window: ^NS.Window, path: string) {
+    assert(s.text_view != nil, "Cannot load file without initializing UI first")
+    data, err := os.read_entire_file(path, context.allocator)
+    assert(err == nil)
+    str := NS.String_alloc()
+    str = str->initWithOdinString(string(data))
+    (cast(^Text)s.text_view)->setString(str)
+    fmt.println("loaded file")
+
+    filename := filepath.base(path)
+    title := NS.String_alloc()
+    title = title->initWithOdinString(filename)
+    s.window->setTitle(title)
+}
+
+setup_ui :: proc(s: ^State) {
+    fmt.println("setting up UI")
+
+    view := s.window->contentView()
+
+    content_rect := s.window->contentLayoutRect()
+
+    fmt.println("creating TextView")
+
+    s.scrollable_text_view = TextView_scrollableTextView()
+    s.text_view = cast(^TextView)s.scrollable_text_view->documentView()
+
+    msgSend(nil, s.scrollable_text_view, "setFrame:", content_rect)
+
+    s.text_view->setEditable(true)
+    fmt.println("done creating TextView", s.text_view)
+    text_bg := NS.Color_colorWithCalibratedRed(0xfb,0xfe,0xff,0xff)
+    s.text_view->setBackgroundColor(text_bg)
+    text_fg := NS.Color_blackColor()
+    s.text_view->setTextColor(text_fg)
+
+    font_name := NS.MakeConstantString("Berkeley Mono Variable")
+    font := Font_fontWithName(font_name, 24)
+    if font == nil {
+        panic(fmt.tprintf("failed to load font: %s", font_name))
+    }
+    as_text := cast(^Text)s.text_view
+    as_text->setFont(font)
+    as_text->setRichText(false)
+    s.text_view->setAutomaticQuoteSubstitutionEnabled(false)
+
+    load_file(s, s.window, "main.odin")
+
+    view->addSubview(cast(^NS.View)s.scrollable_text_view)
+    fmt.println("added TextView to window View")
+}
+
+@(objc_class="NSFont")
+Font :: struct{using _: NS.Object}
+
+@(objc_type=Font, objc_name="fontWithName", objc_is_class_method=true)
+Font_fontWithName :: proc "c" (name: ^NS.String, size: NS.Float) -> ^Font {
+    return msgSend(^Font, Font, "fontWithName:size:", name, size)
+}
+
+@(objc_class="NSScrollView")
+ScrollView :: struct {using _: NS.Object}
+
+@(objc_type=ScrollView, objc_name="documentView")
+ScrollView_documentView :: proc(self: ^ScrollView) -> ^NS.Object {
+    return msgSend(^NS.Object, self, "documentView")
+}
+
+@(objc_class="NSText")
+Text :: struct{using _: NS.Object}
+
+@(objc_type=Text, objc_name="setFont")
+Text_setFont :: proc "c" (self: ^Text, font: ^Font) {
+    msgSend(nil, self, "setFont:", font)
+}
+@(objc_type=Text, objc_name="setRichText")
+Text_setRichText :: proc "c" (self: ^Text, enabled: bool) {
+    msgSend(nil, self, "setRichText:", enabled)
+}
+@(objc_type=Text, objc_name="string")
+Text_string :: proc "c" (self: ^Text) -> ^NS.String {
+    return msgSend(^NS.String, self, "string")
+}
+@(objc_type=Text, objc_name="setString")
+Text_setString :: proc "c" (self: ^Text, str: ^NS.String) {
+    msgSend(nil, self, "setString:", str)
+}
+
+@(objc_class="NSTextView")
+TextView :: struct {using _: NS.Object}
+
+@(objc_type=TextView, objc_name="alloc", objc_is_class_method=true)
+TextView_alloc :: proc "c" () -> ^TextView {
+    return msgSend(^TextView, TextView, "alloc")
+}
+@(objc_type=TextView, objc_name="initWithFrame")
+TextView_initWithFrame :: proc "c" (self: ^TextView, rect: NS.Rect) -> ^TextView {
+    return msgSend(^TextView, self, "initWithFrame:", rect)
+}
+@(objc_type=TextView, objc_name="setBackgroundColor")
+TextView_setBackgroundColor :: proc "c" (self: ^TextView, color: ^NS.Color) {
+    msgSend(nil, self, "setBackgroundColor:", color)
+}
+@(objc_type=TextView, objc_name="backgroundColor")
+TextView_backgroundColor :: proc "c" (self: ^TextView) -> ^NS.Color {
+    return msgSend(^NS.Color, self, "backgroundColor")
+}
+@(objc_type=TextView, objc_name="setEditable")
+TextView_setEditable :: proc "c" (self: ^TextView, editable: bool) {
+    msgSend(nil, self, "setEditable:", editable)
+}
+@(objc_type=TextView, objc_name="setTextColor")
+TextView_setTextColor :: proc "c" (self: ^TextView, color: ^NS.Color) {
+    msgSend(nil, self, "setTextColor:", color)
+}
+@(objc_type=TextView, objc_name="setAutomaticQuoteSubstitutionEnabled")
+TextView_setAutomaticQuoteSubstitutionEnabled :: proc "c" (self: ^TextView, enabled: bool) {
+    msgSend(nil, self, "setAutomaticQuoteSubstitutionEnabled:", enabled)
+}
+@(objc_type=TextView, objc_name="scrollableTextView", objc_is_class_method=true)
+TextView_scrollableTextView :: proc "c" () -> ^ScrollView {
+    return msgSend(^ScrollView, TextView, "scrollableTextView")
+}
+```
