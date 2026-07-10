@@ -3,7 +3,7 @@ title: "Postgres TIL: Multi-Line Copy in psql"
 date: "2026-07-08"
 tags:
 - sql
-- TIL
+- til
 - postgres
 ---
 
@@ -36,7 +36,7 @@ So, I can quickly wrap my SQL query like this:
 ```sql
 copy (
   select 42 as the_answer
-) to stdout
+) to stdout with (format csv, header)
 \g data.csv
 ```
 
@@ -44,3 +44,19 @@ copy (
 
 This is a pretty small feature, but it really comes in handy when someone needs some data right away.
 Knowing the best way to copy data out of Postgres offhand means I spend less time fussing with my tools and more time focusing on writing SQL and helping people.
+
+---
+
+### Update (2026-07-10)
+
+I discovered a better way to do this that allows you to use a query from a file, and pipe the output into another file.
+You can use `\o [FILE]` to send query results to a file.
+I've used this command before for storing `EXPLAIN ANALYZE` output, but I didn't think to use it for generating CSVs until today.
+This was really useful for me because it means I can store my query in `query.sql` and run it straight to a CSV file with this:
+
+```sql
+\o results.csv
+\i query.sql
+```
+
+If you run `\?` in psql, you will get a full list of other useful commands.
