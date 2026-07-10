@@ -3,7 +3,7 @@ title: "Postgres TIL: SECURITY DEFINER"
 date: "2026-06-29"
 tags:
 - sql
-- TIL
+- til
 - postgres
 ---
 
