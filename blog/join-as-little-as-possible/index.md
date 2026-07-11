@@ -5,7 +5,7 @@ tags:
 - sql
 ---
 
-Okay, that title is a little strong, but I do think you should avoid joins, *when you don't need them*.
+Okay, that title is too strong, but I do think you should avoid one-to-many joins, *when you don't need them*.
 
 When I am working on a new SQL view or a one-off query to get someone some data, I often have a primary table I am concerned with, and various other supplementary tables that have extra data that I need.
 Let's say I have three tables that look like this:
@@ -66,10 +66,10 @@ But, if you think this query looks reasonable at first, then you are not alone.
 To me, it feels natural.
 Joins are an important part of SQL, they're the tool you use to correlate tables together.
 It's obvious.
-Except, it's _inefficient_.
+Except, they make this query _inefficient_.
 
 When I say inefficient, I mean relatively inefficient.
-At smaller table sizes and with few joins, this query will run fine.
+At smaller table sizes and with this few joins, this query will run fine.
 But there is a simpler way to write this query that completely avoids joins and the `GROUP BY`, and thus scales better as table sizes grow.
 And that is by using sub-queries for each correlated piece of data that you need.
 
@@ -92,7 +92,7 @@ FROM example.game g
 
 Honestly, this way of writing the query looks *worse* to me at times.
 Sub-queries can look ugly when they grow larger.
-They don't look as pretty as joins, but they do scale better.
+They don't look as pretty as joins, but they do scale better in this case.
 Let's generate some test data to confirm this.
 
 ```sql
@@ -120,7 +120,7 @@ $$ LANGUAGE plpgsql;
 ```
 
 I generated plenty of data to make the performance scaling differences more dramatic.
-The first query using joins finished in 2245ms (milliseconds) when I ran it with `EXPLAIN ANALYZE`.
+The first query using joins and `GROUP BY` finished in 2245ms (milliseconds) when I ran it with `EXPLAIN ANALYZE`.
 The second query only took 64ms under the same conditions.
 
 Let's look at the query plans to see why there is a difference.
@@ -149,6 +149,8 @@ Let's look at the query plans to see why there is a difference.
 You may not be able to replicate this query plan exactly because it depends heavily on table statistics, but typically it will look something like this.
 The query planner avoids a join against the mods table because we are doing a simple `count(distinct m)`, but beyond that, the query planner *cannot* do anything but some kind of join followed by a `GroupAggregate`.
 It would be nearly impossible for the query planner to optimize this query into something better without potentially changing the behavior of the query.
+And this plan scales so poorly because of the [Cartesian explosion](https://en.wikipedia.org/wiki/Cartesian_explosion) that results from one-to-many joins, which is then fed into an expensive grouping operation.
+
 Now, let's look at the second query's plan.
 
 ```
@@ -180,14 +182,14 @@ I also think it's funny that the JIT turned on for this second query and not the
 Don't ask me why.
 I tried turning JIT off and running it again, but that was slightly slower, so the query planner knew what it was doing I guess.
 
-So to summarize, try to avoid joins as much as possible.
+So to summarize, try to avoid one-to-many joins as much as possible.
 If you can query data in a sub-query, generally that will result in better performance.
 Maybe this is completely obvious advice to everyone else, but I wanted to write it down in case anyone else defaults to using joins when they don't need to like I do.
 
 I am working on a new process for writing my queries.
 It's still rough, but it goes something like this:
 
-- Identify what each row represents, and use that to pick your base table and your (hopefully small!) set of inner joins:
+- Identify what each row represents, and use that to pick your base table and your set of inner joins:
   - Is a row a class, a game, a person?
   - Or is it a combination of things? In this case, use inner joins.
 - Add all basic columns that you are directly pulling from tables to your select clause.
