@@ -1,6 +1,6 @@
 ---
 title: "SQL"
-updated: "2026-06-25"
+updated: "2026-08-20"
 tags:
 - sql
 - programming
@@ -30,6 +30,7 @@ tags:
 ### Documentation
 
 - [Postgres](https://www.postgresql.org/docs/)
+  - [Data Type Formatting Functions](https://www.postgresql.org/docs/current/functions-formatting.html)
   - [JSON Functions and Operators](https://www.postgresql.org/docs/current/functions-json.html)
   - [PL/pgSQL — SQL Procedural Language](https://www.postgresql.org/docs/current/plpgsql.html)
     - PL/pgSQL is very useful for writing complex migrations or pushing business logic into your database.

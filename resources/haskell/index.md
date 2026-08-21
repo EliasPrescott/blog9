@@ -1,6 +1,6 @@
 ---
 title: "Haskell"
-updated: "2026-08-04"
+updated: "2026-08-20"
 tags:
 - programming
 - haskell
@@ -9,9 +9,10 @@ tags:
 ### Documentation
 
 - [A Gentle Introduction to Haskell](https://www.haskell.org/tutorial/)
-- [CIS194 Lectures](https://www.engineering.upenn.edu/~cis1940/spring13/lectures.html)
 - [GCH User's Guide](https://downloads.haskell.org/ghc/latest/docs/users_guide/)
 - [Haskell 2010 Language Report](https://www.haskell.org/onlinereport/haskell2010/)
+- [Typeclassopedia](https://wiki.haskell.org/Typeclassopedia)
+- [What I Wish I Knew When Learning Haskell](https://sdiehl.github.io/wiwinwlh/)
 
 ### Books
 

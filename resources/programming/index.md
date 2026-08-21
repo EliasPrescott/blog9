@@ -1,6 +1,6 @@
 ---
 title: "Programming"
-updated: "2026-06-25"
+updated: "2026-08-17"
 tags:
 - programming
 ---
@@ -64,5 +64,14 @@ I will continually update this page as I find more resources that I like.
   </blockquote>
   <figcaption>
     <cite><a href="https://grugbrain.dev/">Grug</a></cite>
+  </figcaption>
+</figure>
+
+<figure>
+  <blockquote>
+    <i>Simplicity is the best strategy for scaling</i>. When engineers think about how to solve a complex problem, the obvious answer is to design a complex solution, one with good asymptotics but high fixed overheads. If instead you look for ways to simplify the problem, that often leads to simple solutions with low overheads that work just as well. Simpler solutions scale better and are easier to maintain.
+  </blockquote>
+  <figcaption>
+    <cite><a href="https://www.acm.org/articles/people-of-acm/2026/russ-cox">Russ Cox</a></cite>
   </figcaption>
 </figure>
