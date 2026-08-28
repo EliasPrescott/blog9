@@ -1,6 +1,6 @@
 ---
 title: "Programming"
-updated: "2026-08-17"
+updated: "2026-08-24"
 tags:
 - programming
 ---
@@ -73,5 +73,16 @@ I will continually update this page as I find more resources that I like.
   </blockquote>
   <figcaption>
     <cite><a href="https://www.acm.org/articles/people-of-acm/2026/russ-cox">Russ Cox</a></cite>
+  </figcaption>
+</figure>
+
+<figure>
+  <blockquote>
+    It turns out, <i>nobody</i> is smart enough to get big, complicated systems right the first time.
+    <br>
+    And even if you did build it perfectly, you’re gonna find out that you built the wrong thing. Because nobody gets the <i>requirements</i> right the first time either!
+  </blockquote>
+  <figcaption>
+    <cite><a href="https://ratfactor.com/cards/build-it-twice">Dave Gauer</a></cite>
   </figcaption>
 </figure>
