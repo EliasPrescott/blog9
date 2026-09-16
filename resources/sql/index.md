@@ -1,6 +1,6 @@
 ---
 title: "SQL"
-updated: "2026-08-20"
+updated: "2026-09-14"
 tags:
 - sql
 - programming
@@ -24,6 +24,7 @@ tags:
 ### Books
 
 - Database in Depth — C.J. Date
+- [PostgreSQL 14 Internals — Egor Rogov](https://edu.postgrespro.com/postgresql_internals-14_en.pdf) (free PDF)
 - SQL for Smarties — Joe Celko
 - [SQL Performance Explained — Markus Winand](https://sql-performance-explained.com/)
 
