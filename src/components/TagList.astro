@@ -16,5 +16,5 @@ const enhancedTags = tags
 ---
 
 <div class="tag-list">
-  {enhancedTags.map(t => <a href={`/tags/${t.tag}`} class="chip primary">{t.tag}: {t.count}</a>)}
+  {enhancedTags.map(t => <a href={`/tags/${encodeURIComponent(t.tag)}`} class="chip primary">{t.tag}: {t.count}</a>)}
 </div>

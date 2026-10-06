@@ -4,15 +4,23 @@ import PostList from '../../components/PostList.astro'
 import ResourceList from '../../components/ResourceList.astro'
 import { getCollection } from 'astro:content'
 
+async function getAllTags() {
+  const posts = await getCollection('blog')
+  const tags = [...new Set(posts.flatMap(p => p.data.tags))]
+  return tags
+}
+
 export async function getStaticPaths() {
   const posts = await getCollection('blog')
   const tags = [...new Set(posts.flatMap(p => p.data.tags))]
   return tags.map(t => ({
-    params: { tag: t },
+    params: { tag: encodeURIComponent(t) },
   }))
 }
 
-const { tag } = Astro.params
+const { tag: rawTag } = Astro.params
+const tags = await getAllTags()
+const tag = tags.find(t => encodeURIComponent(t) === rawTag)
 ---
 
 <MainLayout title={`Tag: ${tag}`}>
