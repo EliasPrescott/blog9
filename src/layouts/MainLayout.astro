@@ -17,6 +17,13 @@ const pageTitle = title ? `${title} | ${siteTitle}` : siteTitle
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
+
+    <link
+        rel="alternate"
+        type="application/rss+xml"
+        title="australorp.dev"
+        href={new URL("blog.xml", Astro.site)}
+    />
   </head>
   <body>
     <header>
