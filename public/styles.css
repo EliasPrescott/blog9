@@ -361,4 +361,7 @@ time[datetime] {
   ul {
     padding-inline-start: 16px;
   }
+  .post-list-entry {
+    flex-direction: column;
+  }
 }
