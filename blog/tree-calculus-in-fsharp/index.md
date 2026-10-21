@@ -4,6 +4,10 @@ date: "2026-10-06"
 tags:
 - programming
 - f#
+cover:
+  path: "/src/cover-images/tree-calculus-in-fsharp/cover.png"
+  alt: "a single triangle on the left, and two triangles on the right, the lower one is hollow"
+  summary: "A novel model of computation"
 ---
 
 I recently found [tree calculus](https://treecalcul.us/), which was discovered by Barry Jay.

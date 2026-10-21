@@ -1,6 +1,7 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro'
 import PostList from '../components/PostList.astro'
+import PostCardList from '../components/PostCardList.astro'
 import ResourceList from '../components/ResourceList.astro'
 import TagList from '../components/TagList.astro'
 import BibleLink from '../components/BibleLink.astro'
@@ -12,30 +13,42 @@ const allTags = [...new Set(posts.flatMap(x => x.data.tags))]
 
 <MainLayout title='Home'>
   <article>
-    <p>
-      My place for writing about faith, technology, and visual design.
-      All opinions are my own, and correct!
-    </p>
-    <h2>Recent Posts</h2>
-    <p>
-      Posts are one-time bursts of writing concentrated on a concise idea or project.
-    </p>
-    <PostList max={5} />
+    <h2>Featured Posts</h2>
+    <hr>
+    <PostCardList max={4} showTags />
+
+    <hr>
+
+    <h2>More Posts</h2>
+    <PostList max={10} />
+
+    <hr>
+
     <h2>Resources</h2>
     <p>
       Resource pages are ever-changing collections relating to a broader topic.
     </p>
     <ResourceList />
+
+    <hr>
+
     <h2>Tags</h2>
     <TagList tags={allTags} />
+
+    <hr>
+
     <h2>Social Presences</h2>
     <ul>
       <li><a href="https://github.com/EliasPrescott">GitHub</a></li>
       <li><a href="https://www.linkedin.com/in/elias-prescott">LinkedIn</a></li>
     </ul>
-    <h2><a href='/recipes'>Recipes</a></h2>
 
-    <hr />
+    <hr>
+
+    <h2>Recipes</h2>
+    <a href="/recipes">☞ View all recipes</a>
+
+    <hr>
 
     <figure>
       <blockquote>

@@ -1,6 +1,7 @@
 ---
 import MainLayout from '../../layouts/MainLayout.astro'
 import PostList from '../../components/PostList.astro'
+import PostCardList from '../../components/PostCardList.astro'
 import ResourceList from '../../components/ResourceList.astro'
 import { getCollection } from 'astro:content'
 
@@ -27,9 +28,18 @@ const tag = tags.find(t => encodeURIComponent(t) === rawTag)
   <article>
     <h1>Tag: <span class="smallcaps">{tag}</span></h1>
     <hr />
-    <h2>Related Posts</h2>
+
+    <h2>Featured Posts tagged <span class="smallcaps">{tag}</span></h2>
+    <PostCardList max={4} tag={tag} showTags />
+
+    <hr>
+
+    <h2>Posts tagged <span class="smallcaps">{tag}</span> (<a href="/blog">All Posts</a>)</h2>
     <PostList tag={tag} />
-    <h2>Related Resources</h2>
+
+    <hr>
+
+    <h2>Resources tagged <span class="smallcaps">{tag}</span> (<a href="/resources">All Resources</a>)</h2>
     <ResourceList tag={tag} />
   </article>
 </MainLayout>

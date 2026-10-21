@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content'
 
-const { tags } = Astro.props
+const { tags, max } = Astro.props
 const posts = await getCollection('blog')
 const resources = await getCollection('resources')
 
@@ -10,9 +10,13 @@ function tagPostCount(tag) {
     + resources.filter(x => x.data.tags.includes(tag)).length
 }
 
-const enhancedTags = tags
+let enhancedTags = tags
   .map(x => ({ tag: x, count: tagPostCount(x) }))
   .toSorted((a, b) => b.count - a.count || a.tag.localeCompare(b.tag))
+
+if (max !== undefined) {
+  enhancedTags = enhancedTags.slice(0, max)
+}
 ---
 
 <div class="tag-list">

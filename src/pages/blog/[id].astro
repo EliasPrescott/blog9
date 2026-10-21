@@ -1,8 +1,9 @@
 ---
 import MainLayout from '../../layouts/MainLayout.astro'
 import TagList from '../../components/TagList.astro'
-import { Image } from 'astro:assets'
+import { Image, getImage } from 'astro:assets'
 import { getCollection, getEntry, render } from 'astro:content'
+import * as path from 'node:path'
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog')
@@ -19,12 +20,38 @@ if (!post) {
   throw new Error(`Post ${post} not found`)
 }
 
+const images = import.meta.glob('/src/cover-images/**/*.{jpeg,jpg,png,gif}')
+
+let coverImg = null
+let coverImgAlt = null
+if (post.data.cover) {
+  coverImg = images[post.data.cover.path]
+  coverImgAlt = post.data.cover.alt
+  if (!coverImgAlt) {
+    throw new Error(`missing cover image alt text on post ${post.id}`)
+  }
+}
+
+let meta = post.data.meta ?? {}
+meta = {
+  url: new URL(`blog/${post.id}`, Astro.site).toString(),
+  type: 'article',
+  description: post.data.cover?.summary,
+  ...meta
+}
+
+if (!meta.image && coverImg) {
+  // this feels like a hack
+  meta = {...meta, image: (await coverImg()).default.src}
+}
+
 const { Content } = await render(post)
 ---
 
-<MainLayout title={post.data.title}>
+<MainLayout title={post.data.title} meta={meta}>
   <article>
     <h1>{post.data.title}</h1>
+    {coverImg && <Image src={coverImg()} alt={coverImgAlt} class="cover-img" />}
     <p>Written <time datetime={post.data.date}>{post.data.date}</time></p>
     <TagList tags={post.data.tags} />
     <Content />

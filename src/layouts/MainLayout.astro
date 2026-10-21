@@ -1,6 +1,6 @@
 ---
 const siteTitle = 'australorp.dev'
-const { title } = Astro.props
+const { title, meta } = Astro.props
 const pageTitle = title ? `${title} | ${siteTitle}` : siteTitle
 ---
 
@@ -18,6 +18,19 @@ const pageTitle = title ? `${title} | ${siteTitle}` : siteTitle
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
 
+    <meta property="og:title" content={meta?.title ?? title}>
+    {meta?.url && <meta property="og:url" content={meta.url}>}
+    {meta?.type && <meta property="og:type" content={meta.type}>}
+    {meta?.image &&<meta property="og:image" content={meta.image}>}
+    {meta?.description &&<meta property="og:description" content={meta.description}>}
+
+    {meta?.image && <>
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:title" content={meta.title ?? title}>
+      <meta name="twitter:image" content={meta.image}>
+      {meta.description && <meta name="twitter:description" content={meta.description}>}
+    </>}
+
     <link
         rel="alternate"
         type="application/rss+xml"
@@ -28,9 +41,49 @@ const pageTitle = title ? `${title} | ${siteTitle}` : siteTitle
   <body>
     <header>
       <h1><i><a href="/">{siteTitle}</a></i></h1>
+
+      <div class="theme-btn-container">
+        <h5>Themes</h5>
+        <div class="theme-btn-list">
+          {['classic', 'red', 'swamp', 'hacker', 'gold'].map(theme => (
+            <button class="theme-btn" data-theme={theme} title={`enable ${theme} theme`} onclick={`document.body.dataset['theme'] = '${theme}'`}>
+              {theme}
+            </button>
+          ))}
+        </div>
+      </div>
     </header>
+
     <main>
       <slot />
     </main>
   </body>
+
+  <script>
+    const defaultTheme = 'classic'
+    function getTheme() {
+      return localStorage.getItem('theme') ?? defaultTheme
+    }
+    function setTheme(t) {
+      const theme = t ?? defaultTheme
+      document.body.dataset['theme'] = theme
+      localStorage.setItem('theme', theme)
+    }
+
+    setTheme(getTheme())
+
+    const themeButtons = document.querySelectorAll('.theme-btn[data-theme]')
+    themeButtons.forEach(btn => {
+      if (getTheme() === btn.dataset['theme']) {
+        btn.classList.add('active')
+      }
+      btn.addEventListener('click', evt => {
+        setTheme(evt.target.dataset['theme'])
+        themeButtons.forEach(otherBtn => {
+          otherBtn.classList.remove('active')
+        })
+        btn.classList.add('active')
+      })
+    })
+  </script>
 </html>

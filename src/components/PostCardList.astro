@@ -1,0 +1,40 @@
+---
+import TagList from './TagList.astro'
+import { getCollection } from 'astro:content'
+import { Image } from 'astro:assets'
+
+const { tag, max, showTags } = Astro.props
+
+let posts = await getCollection('blog')
+posts = posts.filter(p => p.data.cover)
+
+const coverImages = import.meta.glob('/src/cover-images/**/*.{jpeg,jpg,png,gif}')
+
+if (tag) {
+  posts = posts.filter(p => p.data.tags.includes(tag))
+}
+
+posts = posts.toSorted((a, b) => new Date(b.data.date) - new Date(a.data.date))
+const totalPostCount = posts.length
+const morePosts = max && max < totalPostCount
+
+if (max) {
+  posts = posts.slice(0, max)
+}
+---
+
+<div class="post-card-list">
+  {posts.map(p => <div class="post-card">
+    <a href={`/blog/${p.id}`} class="post-card-img-link">
+      <Image src={coverImages[p.data.cover.path]()} alt={p.data.cover.alt} />
+    </a>
+    <div class="post-card-details">
+      <a href={`/blog/${p.id}`} class="post-link">{p.data.title} </a>
+      <p>{p.data.cover.summary}</p>
+      <span class="post-card-publish-date">Published {Temporal.PlainDate.from(p.data.date).toLocaleString('en-US', { dateStyle: 'long' })}</span>
+      {showTags && <TagList tags={p.data.tags} max={3} />}
+    </div>
+  </div>)}
+</div>
+{morePosts && <a href="/blog">☞ View all posts ({totalPostCount-max} more)</a>}
+{posts.length === 0 && <div>No featured posts found.</div>}

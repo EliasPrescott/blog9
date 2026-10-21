@@ -6,8 +6,6 @@ tags:
 - programming
 ---
 
-![The cover of PostgreSQL 14 Internals saying "Use my knowledge. I beg you."](./postgresql-internals-use-my-knowledge.png)
-
 I recently discovered [PostgreSQL 14 Internals](https://postgrespro.com/community/books/internals) ([direct PDF link](https://edu.postgrespro.com/postgresql_internals-14_en.pdf)).
 A book which, as made obvious by its title, covers the internal workings of Postgres.
 I haven't read it cover-to-cover, but I have read significant portions and enjoyed it.
