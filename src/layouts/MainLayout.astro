@@ -70,7 +70,12 @@ const pageTitle = title ? `${title} | ${siteTitle}` : siteTitle
       localStorage.setItem('theme', theme)
     }
 
-    setTheme(getTheme())
+    document.addEventListener('load', () => {
+      setTheme(getTheme())
+    })
+    window.addEventListener('pageshow', () => {
+      setTheme(getTheme())
+    })
 
     const themeButtons = document.querySelectorAll('.theme-btn[data-theme]')
     themeButtons.forEach(btn => {
