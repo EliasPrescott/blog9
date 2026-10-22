@@ -99,6 +99,7 @@ button {
 
   padding: 8px;
 
+  font-family: 'Playfair', ui-serif, serif;
   font-size: 1.2rem;
 
   color: oklch(var(--primary-color));
