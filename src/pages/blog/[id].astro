@@ -54,6 +54,7 @@ const { Content } = await render(post)
     {coverImg && <Image src={coverImg()} alt={coverImgAlt} class="cover-img" />}
     <p>Written <time datetime={post.data.date}>{post.data.date}</time></p>
     <TagList tags={post.data.tags} />
+    <hr>
     <Content />
   </article>
 </MainLayout>

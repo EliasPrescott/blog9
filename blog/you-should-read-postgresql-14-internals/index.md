@@ -4,6 +4,10 @@ date: "2026-09-17"
 tags:
 - sql
 - programming
+cover:
+  path: "/src/cover-images/you-should-read-postgresql-14-internals/cover.png"
+  alt: "pixelized squares is a repeating pattern, varying from black to blue to green"
+  summary: "Peek under the hood of your favorite database"
 ---
 
 I recently discovered [PostgreSQL 14 Internals](https://postgrespro.com/community/books/internals) ([direct PDF link](https://edu.postgrespro.com/postgresql_internals-14_en.pdf)).

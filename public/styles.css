@@ -31,7 +31,7 @@ body {
 [data-theme="swamp"] {
   --primary: 120;
   --primary-color: 15% 0.8 var(--primary);
-  --bg-color: 100% 0.025 var(--primary);
+  --bg-color: 100% 0.01 var(--primary);
   --txt-color: 5% 0.25 var(--primary);
 }
 
@@ -45,44 +45,19 @@ body {
 
 [data-theme="gold"] {
   --primary: 115;
-  --primary-color: 80% 1 var(--primary);
-  --bg-color: 20% 0 var(--primary);
+  --primary-color: 90% 1 var(--primary);
+  --bg-color: 30% 0 var(--primary);
   --txt-color: 95% 0.025 var(--primary);
   --shadow-color: --var(--bg-color);
 }
 
-.theme-btn-container {
+.theme-btn-list {
   display: flex;
-  flex-direction: column;
-  gap: 16px;
-  border: 1px solid oklch(var(--txt-color) / 10%);
-  padding: 16px;
-  border-radius: 8px;
+  flex-wrap: wrap;
+  gap: 4px;
 
-  .theme-btn-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px;
-
-    .theme-btn {
-      cursor: pointer;
-      padding: 4px 16px;
-      color: oklch(var(--primary-color));
-      background-color: oklch(var(--bg-color));
-      border: 1px solid oklch(var(--txt-color) / 10%);
-      border-radius: 8px;
-      box-shadow: 0 2px 2px 0 oklch(var(--shadow-color) / 10%);
-      transition: box-shadow .3s;
-
-      &.active {
-        font-weight: bold;
-        text-decoration: underline;
-      }
-
-      &:hover, &:focus-within {
-        box-shadow: 0 2px 4px 0 oklch(var(--shadow-color) / 20%);
-      }
-    }
+  .theme-btn {
+    text-transform: capitalize;
   }
 }
 
@@ -96,7 +71,6 @@ h1,h2,h3,h4,h5,h6 {
 
 :is(a, button, pre, summary):focus-visible {
   outline: 2px solid oklch(var(--txt-color));
-  border-radius: 4px;
 }
 
 summary {
@@ -110,11 +84,58 @@ pre:focus-visible {
 a {
   color: oklch(var(--primary-color));
   text-decoration: none;
-  /* font-style: italic; */
-  border-radius: 4px;
 
   &:hover, &:focus-visible {
     text-decoration: 2px solid underline oklch(var(--primary-color));
+  }
+}
+
+button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  cursor: pointer;
+
+  padding: 8px;
+
+  font-size: 1.2rem;
+
+  color: oklch(var(--primary-color));
+  background-color: oklch(var(--bg-color));
+
+  border: 1px solid oklch(var(--txt-color) / 20%);
+
+  box-shadow: 0 2px 2px 0 oklch(var(--shadow-color) / 10%);
+  transition: box-shadow .3s;
+
+  &.active {
+    font-weight: bold;
+    text-decoration: underline;
+  }
+
+  &:hover, &:focus-within {
+    box-shadow: 0 2px 4px 0 oklch(var(--shadow-color) / 20%);
+  }
+
+  & > svg {
+    height: 1lh;
+    width: 1lh;
+  }
+}
+
+dialog:open {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 16px;
+  color: oklch(var(--txt-color));
+  background-color: oklch(var(--bg-color));
+  border: 1px solid oklch(var(--txt-color) / 30%);
+  padding: 16px;
+
+  button[command="close"] {
+    align-self: end;
   }
 }
 
@@ -140,6 +161,21 @@ header {
   padding: 16px;
   gap: 16px;
   border-bottom: 1px solid oklch(var(--txt-color) / 10%);
+
+  .site-title-branding {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    font-style: italic;
+
+    svg {
+      --size: 1ex;
+      width: var(--size);
+      height: var(--size);
+      color: oklch(var(--primary-color));
+    }
+  }
 }
 
 main {
@@ -162,7 +198,6 @@ article {
     &.cover-img {
       max-width: min(100%, 800px);
       border: 1px solid oklch(var(--txt-color) / 20%);
-      border-radius: 16px;
     }
   }
 }
@@ -170,7 +205,6 @@ article {
 pre {
   max-width: fit-content;
   padding: 16px;
-  border-radius: 4px;
 }
 
 hr {
@@ -204,7 +238,6 @@ hr {
   background-color: oklch(var(--chip-color) / 10%);
   color: oklch(var(--chip-color));
   border: 1px solid oklch(var(--chip-color));
-  border-radius: 4px;
   text-decoration-color: oklch(var(--chip-color)) !important;
   white-space: nowrap;
 
@@ -222,7 +255,6 @@ figure {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  border-radius: 8px;
 
   blockquote {
     border-left: 1px solid oklch(var(--figure-color) / 50%);
@@ -243,7 +275,6 @@ figure {
 details {
   border: 1px solid oklch(var(--txt-color));
   padding: 8px;
-  border-radius: 8px;
   background-color: oklch(var(--txt-color) / 10%);
 }
 
@@ -304,7 +335,6 @@ time[datetime] {
     overflow: hidden;
     gap: 0;
     border: 1px solid var(--border-color);
-    border-radius: 16px;
     box-shadow: 0 8px 16px oklch(var(--shadow-color) / 10%);
     transition: box-shadow 0.3s;
 
@@ -323,7 +353,6 @@ time[datetime] {
 
     .post-card-img-link {
       outline-offset: -8px;
-      border-radius: 16px;
     }
 
     img {
@@ -356,6 +385,9 @@ time[datetime] {
     font-size: 1.6rem;
   }
   .chip {
+    font-size: 1.0rem;
+  }
+  button {
     font-size: 1.0rem;
   }
   ul {
