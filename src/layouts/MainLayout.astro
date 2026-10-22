@@ -24,7 +24,7 @@ const pageTitle = title ? `${title} | ${siteTitle}` : siteTitle
     {meta?.type && <meta property="og:type" content={meta.type}>}
     {meta?.image && <meta property="og:image" content={meta.image}>}
     {meta?.description && <meta property="og:description" content={meta.description}>}
-    {meta?.description && <meta property="description" content={meta.description}>}
+    {meta?.description && <meta name="description" content={meta.description}>}
 
     {meta?.image && <>
       <meta name="twitter:card" content="summary_large_image">
