@@ -1,0 +1,18 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro'
+import PostCardList from '../../components/PostCardList.astro'
+---
+
+<MainLayout title='All Featured Posts'>
+  <article>
+    <h1>All Featured Posts</h1>
+    <p>
+      Featured posts are posts with cover images and (usually) a higher level of polish.
+    </p>
+    <p>
+      You can also see <a href='/blog'>all posts</a>, or find posts by <a href='/tags'>tag</a>.
+    </p>
+    <br>
+    <PostCardList />
+  </article>
+</MainLayout>

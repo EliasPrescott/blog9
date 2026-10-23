@@ -13,8 +13,6 @@ const allTags = [...new Set(posts.flatMap(x => x.data.tags))]
 
 <MainLayout title='Home'>
   <article>
-    <h2>Featured Posts</h2>
-    <hr>
     <PostCardList max={4} showTags />
 
     <hr>

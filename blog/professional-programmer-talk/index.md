@@ -4,7 +4,7 @@ date: "2026-05-04"
 tags:
 - programming
 cover:
-  path: "/src/cover-images/generative-1.png"
+  path: "cover.png"
   alt: "A swirl of random shapes"
   summary: "Advice for younger programmers"
 ---

@@ -5,7 +5,7 @@ tags:
 - programming
 - clojure
 cover:
-  path: "/src/cover-images/thoughts-on-rich-hickey-in-context/cover.png"
+  path: "cover.png"
   alt: "placeholder"
   summary: "Defining contracts through pattern-matching"
 ---

@@ -1,0 +1,15 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro'
+import TagList from '../../components/TagList.astro'
+import { getCollection } from 'astro:content'
+
+const posts = await getCollection('blog')
+const allTags = [...new Set(posts.flatMap(x => x.data.tags))]
+---
+
+<MainLayout title='All Tags'>
+  <article>
+    <h1>All Tags</h1>
+    <TagList tags={allTags} />
+  </article>
+</MainLayout>

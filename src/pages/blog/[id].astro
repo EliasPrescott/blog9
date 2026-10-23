@@ -4,6 +4,7 @@ import TagList from '../../components/TagList.astro'
 import { Image, getImage } from 'astro:assets'
 import { getCollection, getEntry, render } from 'astro:content'
 import * as path from 'node:path'
+import { globPostImages, cleanAssetPath } from '../../../src/helpers'
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog')
@@ -20,12 +21,13 @@ if (!post) {
   throw new Error(`Post ${post} not found`)
 }
 
-const images = import.meta.glob('/src/cover-images/**/*.{jpeg,jpg,png,gif}')
+const images = globPostImages()
 
 let coverImg = null
 let coverImgAlt = null
 if (post.data.cover) {
-  coverImg = images[post.data.cover.path]
+  const coverPath = cleanAssetPath(path.dirname(post.filePath), post.data.cover.path)
+  coverImg = images[coverPath]
   coverImgAlt = post.data.cover.alt
   if (!coverImgAlt) {
     throw new Error(`missing cover image alt text on post ${post.id}`)

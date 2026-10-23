@@ -2,13 +2,15 @@
 import TagList from './TagList.astro'
 import { getCollection } from 'astro:content'
 import { Image } from 'astro:assets'
+import { globPostImages, cleanAssetPath } from '../helpers'
+import * as path from 'node:path'
 
 const { tag, max, showTags } = Astro.props
 
 let posts = await getCollection('blog')
 posts = posts.filter(p => p.data.cover)
 
-const coverImages = import.meta.glob('/src/cover-images/**/*.{jpeg,jpg,png,gif}')
+const coverImages = globPostImages()
 
 if (tag) {
   posts = posts.filter(p => p.data.tags.includes(tag))
@@ -26,7 +28,7 @@ if (max) {
 <div class="post-card-list">
   {posts.map(p => <div class="post-card">
     <a href={`/blog/${p.id}`} class="post-card-img-link">
-      <Image src={coverImages[p.data.cover.path]()} alt={p.data.cover.alt} />
+      <Image src={coverImages[cleanAssetPath(path.dirname(p.filePath), p.data.cover.path)]()} alt={p.data.cover.alt} />
     </a>
     <div class="post-card-details">
       <a href={`/blog/${p.id}`} class="post-link">{p.data.title} </a>
@@ -36,5 +38,6 @@ if (max) {
     </div>
   </div>)}
 </div>
-{morePosts && <a href="/blog">☞ View all posts ({totalPostCount-max} more)</a>}
+<br>
+{morePosts && <a href="/blog/featured">☞ View all featured posts ({totalPostCount-max} more)</a>}
 {posts.length === 0 && <div>No featured posts found.</div>}

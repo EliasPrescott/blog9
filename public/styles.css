@@ -334,6 +334,7 @@ time[datetime] {
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    border-radius: 16px 0 16px 0;
     gap: 0;
     border: 1px solid var(--border-color);
     box-shadow: 0 8px 16px oklch(var(--shadow-color) / 10%);

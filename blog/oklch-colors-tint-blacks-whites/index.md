@@ -5,7 +5,7 @@ tags:
 - web-design
 - programming
 cover:
-  path: "/src/cover-images/oklch-colors-tint-blacks-whites/cover.png"
+  path: "cover.png"
   alt: "4 colored squares with the hex codes: #fbfeff, #c2bfd4, #5400e6, and #190051"
   summary: "Making colors look good with CSS"
 ---

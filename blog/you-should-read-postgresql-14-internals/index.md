@@ -5,7 +5,7 @@ tags:
 - sql
 - programming
 cover:
-  path: "/src/cover-images/you-should-read-postgresql-14-internals/cover.png"
+  path: "cover.png"
   alt: "pixelized squares is a repeating pattern, varying from black to blue to green"
   summary: "Peek under the hood of your favorite database"
 ---
