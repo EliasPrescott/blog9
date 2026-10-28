@@ -1,6 +1,6 @@
 ---
 title: "Romans"
-updated: "2026-06-23"
+updated: "2026-10-27"
 tags:
 - romans
 ---
@@ -11,8 +11,9 @@ tags:
 
 ### Videos
 
-- [Romans Bible Study (Playlist) - Michael Kruger](https://youtube.com/playlist?list=PLCAY0TrYCQiP7mgRZYip-7TWM7TUxiYI7&si=oYlzyZp1izSY3VoE)
-- [Book of Romans Overview (Playlist) - Mike Winger](https://youtube.com/playlist?list=PLZ3iRMLYFlHvQ9G4NCvuiN4Evbp13uQa1&si=WJi0sQeBVeCX-N_l)
+- [Book of Romans Overview (Playlist) - Mike Winger](https://youtube.com/playlist?list=PLZ3iRMLYFlHvQ9G4NCvuiN4Evbp13uQa1)
+- [Dr. Stephen Westerholm on Romans 4](https://youtu.be/BmBPNkWxz0g)
+- [Romans Sermon Series - Kevin DeYoung](https://youtube.com/playlist?list=PLzxFiU8d7j_pSbxx8WPO4vU8mczqjoPlE)
 
 ### Quotes
 
