@@ -189,7 +189,7 @@ main {
 article {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 32px;
   max-width: 1200px;
 
   img {
@@ -201,6 +201,12 @@ article {
       border: 1px solid oklch(var(--txt-color) / 20%);
     }
   }
+}
+
+.tight-flex-col {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 pre {

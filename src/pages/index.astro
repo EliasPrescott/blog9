@@ -15,86 +15,87 @@ const allTags = [...new Set(posts.flatMap(x => x.data.tags))]
   <article>
     <PostCardList max={4} showTags />
 
-    <hr>
+    <div class="tight-flex-col">
+      <h2>More Posts</h2>
+      <PostList max={10} />
+      <hr>
+    </div>
 
-    <h2>More Posts</h2>
-    <PostList max={10} />
+    <div class="tight-flex-col">
+      <h2>Resources</h2>
+      <p>
+        Resource pages are ever-changing collections relating to a broader topic.
+      </p>
+      <ResourceList />
+    </div>
 
-    <hr>
+    <div class="tight-flex-col">
+      <h2>Tags</h2>
+      <TagList tags={allTags} />
+    </div>
 
-    <h2>Resources</h2>
-    <p>
-      Resource pages are ever-changing collections relating to a broader topic.
-    </p>
-    <ResourceList />
+    <div class="tight-flex-col">
+      <h2>Social Presences</h2>
+      <ul>
+        <li><a href="https://github.com/EliasPrescott">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/elias-prescott">LinkedIn</a></li>
+      </ul>
+    </div>
 
-    <hr>
+    <div class="tight-flex-col">
+      <h2>Recipes</h2>
+      <a href="/recipes">☞ View all recipes</a>
+    </div>
 
-    <h2>Tags</h2>
-    <TagList tags={allTags} />
+    <div class="tight-flex-col">
+      <figure>
+        <blockquote>
+          For I am not ashamed of the gospel, for it is the power of God for salvation to everyone who believes, to the Jew first and also to the Greek.
+        </blockquote>
+        <figcaption>
+          <cite><BibleLink ref='Romans 1:16 (ESV)' /></cite>
+        </figcaption>
+      </figure>
 
-    <hr>
+      <figure>
+        <blockquote>
+          Do not be conformed to this world, but be transformed by the renewal of your mind, that by testing you may discern what is the will of God, what is good and acceptable and perfect.
+        </blockquote>
+        <figcaption>
+          <cite><BibleLink ref='Romans 12:2 (ESV)' /></cite>
+        </figcaption>
+      </figure>
 
-    <h2>Social Presences</h2>
-    <ul>
-      <li><a href="https://github.com/EliasPrescott">GitHub</a></li>
-      <li><a href="https://www.linkedin.com/in/elias-prescott">LinkedIn</a></li>
-    </ul>
+      <figure>
+        <blockquote>
+          For Jews demand signs and Greeks seek wisdom, but we preach Christ crucified, a stumbling block to Jews and folly to Gentiles, but to those who are called, both Jews and Greeks, Christ the power of God and the wisdom of God.
+          For the foolishness of God is wiser than men, and the weakness of God is stronger than men.
+        </blockquote>
+        <figcaption>
+          <cite><BibleLink ref='1 Corinthians 1:22-25 (ESV)' /></cite>
+        </figcaption>
+      </figure>
 
-    <hr>
+      <figure>
+        <blockquote>
+          Where we find a difficulty we may always expect that a discovery awaits us.
+        </blockquote>
+        <figcaption>
+          <cite><a href="https://en.wikiquote.org/wiki/C._S._Lewis">C.S. Lewis</a></cite>
+        </figcaption>
+      </figure>
 
-    <h2>Recipes</h2>
-    <a href="/recipes">☞ View all recipes</a>
-
-    <hr>
-
-    <figure>
-      <blockquote>
-        For I am not ashamed of the gospel, for it is the power of God for salvation to everyone who believes, to the Jew first and also to the Greek.
-      </blockquote>
-      <figcaption>
-        <cite><BibleLink ref='Romans 1:16 (ESV)' /></cite>
-      </figcaption>
-    </figure>
-
-    <figure>
-      <blockquote>
-        Do not be conformed to this world, but be transformed by the renewal of your mind, that by testing you may discern what is the will of God, what is good and acceptable and perfect.
-      </blockquote>
-      <figcaption>
-        <cite><BibleLink ref='Romans 12:2 (ESV)' /></cite>
-      </figcaption>
-    </figure>
-
-    <figure>
-      <blockquote>
-        For Jews demand signs and Greeks seek wisdom, but we preach Christ crucified, a stumbling block to Jews and folly to Gentiles, but to those who are called, both Jews and Greeks, Christ the power of God and the wisdom of God.
-        For the foolishness of God is wiser than men, and the weakness of God is stronger than men.
-      </blockquote>
-      <figcaption>
-        <cite><BibleLink ref='1 Corinthians 1:22-25 (ESV)' /></cite>
-      </figcaption>
-    </figure>
-
-    <figure>
-      <blockquote>
-        Where we find a difficulty we may always expect that a discovery awaits us.
-      </blockquote>
-      <figcaption>
-        <cite><a href="https://en.wikiquote.org/wiki/C._S._Lewis">C.S. Lewis</a></cite>
-      </figcaption>
-    </figure>
-
-    <figure>
-      <blockquote>
-        The free man is not he who thinks all opinions equally true or false; that is not freedom but feeble-mindedness. The free man is he who sees the errors as clearly as he sees the truth.
-      </blockquote>
-      <blockquote>
-        There is no such thing on earth as an uninteresting subject; the only thing that can exist is an uninterested person.
-      </blockquote>
-      <figcaption>
-        <cite><a href="https://www.chesterton.org/quotations/essential-chesterton/">G.K. Chesterton</a></cite>
-      </figcaption>
-    </figure>
+      <figure>
+        <blockquote>
+          The free man is not he who thinks all opinions equally true or false; that is not freedom but feeble-mindedness. The free man is he who sees the errors as clearly as he sees the truth.
+        </blockquote>
+        <blockquote>
+          There is no such thing on earth as an uninteresting subject; the only thing that can exist is an uninterested person.
+        </blockquote>
+        <figcaption>
+          <cite><a href="https://www.chesterton.org/quotations/essential-chesterton/">G.K. Chesterton</a></cite>
+        </figcaption>
+      </figure>
+    </div>
   </article>
 </MainLayout>
