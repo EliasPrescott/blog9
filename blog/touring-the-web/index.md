@@ -25,7 +25,7 @@ One of the features that makes Offpunk unique is its tour list.
 
 [Advanced browsing with "tour"](https://offpunk.net/tour.html) (offpunk.net)
 
-This design means when you find interesting links on a page, you don't have to open them right away, you can add them to your tour list to browser later at your convenience. Later can mean in a few minutes, or a few months. Offpunk doesn't care.
+This design means when you find interesting links on a page, you don't have to open them right away, you can add them to your tour list to browse later at your convenience. Later can mean in a few minutes, or a few months. Offpunk doesn't care.
 
 The tour list in Offpunk is a special list, but it is possible to create other lists as you see fit. Each list is simply a Gemtext file containing all the links you put into it. Offpunk even has a command for opening the list file in your editor so you can quickly modify them.
 
