@@ -4,7 +4,7 @@ date: "2026-11-18"
 tags:
 - journaling
 cover:
-  path: "cover.png"
+  path: "cover.jpg"
   alt: "an ovoidal torus made of fine curved lines"
   summary: "Rejecting structure and writing more"
 ---
