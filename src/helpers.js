@@ -1,7 +1,7 @@
 import * as path from 'node:path'
 
 export function globPostImages() {
-  const rawImages = import.meta.glob('/blog/**/*.{jpeg,jpg,png,gif}')
+  const rawImages = import.meta.glob('/blog/**/*.{jpeg,jpg,png,gif,webp}')
   return rawImages
 }
 
